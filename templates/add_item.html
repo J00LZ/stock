@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Add new Item</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <h1>Add new Item</h1>
+    {% match item %}
+    {% when Some with (item) %}
+    <p>{{item.name}} has been added</p>
+    {% when None %}
+    {% endmatch %}
+    <form action="/add_item" method="POST">
+        <p>
+            <label for="name">Item Name</label>
+            <input type="text" name="name" id="item_name">
+        </p>
+        <p>
+            <label for="buy_price">Buy price</label>
+            <input type="number" name="buy_price" id="buy_price" min="0" step="0.01">
+        </p>
+        <p>
+            <label for="sell_price">Sell price</label>
+            <input type="number" name="sell_price" id="sell_price" min="0" step="0.01">
+        </p>
+        <p>
+            <label for="units_per_buy">Drinks out of one bottle</label>
+            <input type="number" name="units_per_buy" id="units_per_buy">
+        </p>
+        <p>
+            <input type="submit" value="Add Item">
+        </p>
+    </form>
+</body>
+
+</html>

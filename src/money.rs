@@ -120,3 +120,9 @@ impl Deref for Money {
         &self.0
     }
 }
+
+impl From<f64> for Money {
+    fn from(value: f64) -> Self {
+        Money((value * 100.0) as i32)
+    }
+}

@@ -6,6 +6,29 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Item List</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        function decrease(id) {
+            var elem = document.getElementById("item-" + id);
+            fetch("/decrease/" + id, {
+                method: "POST"
+            }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                elem.innerHTML = data.amount_in_stock;
+            });
+        }
+
+        function increase(id) {
+            var elem = document.getElementById("item-" + id);
+            fetch("/increase/" + id, {
+                method: "POST"
+            }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                elem.innerHTML = data.amount_in_stock;
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -16,8 +39,8 @@
             <th>Buy price</th>
             <th>Sell price</th>
             <th>Units per buy</th>
-            <th>Amount in stock</th>
-            <th>Profit</th>
+            <th>Bottles in stock</th>
+            <th>Profit per bottle</th>
         </tr>
         {% for item in items %}
         <tr>
@@ -25,7 +48,7 @@
             <td>{{ item.buy_price }}</td>
             <td>{{ item.sell_price }}</td>
             <td>{{ item.units_per_buy }}</td>
-            <td>{{ item.amount_in_stock }}</td>
+            <td><button onclick="decrease({{ item.id }})">-</button><span id="item-{{ item.id }}">{{ item.amount_in_stock }}</span><button onclick="increase({{ item.id }})">+</button></td>
             <td>{{ item.get_profit() }}</td>
         </tr>
         {% endfor %}
