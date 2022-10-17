@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Item List</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <h1>Item List</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Buy price</th>
+            <th>Sell price</th>
+            <th>Units per buy</th>
+            <th>Amount in stock</th>
+            <th>Profit</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.buy_price }}</td>
+            <td>{{ item.sell_price }}</td>
+            <td>{{ item.units_per_buy }}</td>
+            <td>{{ item.amount_in_stock }}</td>
+            <td>{{ item.get_profit() }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

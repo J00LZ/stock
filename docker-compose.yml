@@ -6,3 +6,11 @@ services:
     ports:
       - "5432:5432"
     restart: always
+  
+  adminer: 
+    image: adminer
+    restart: always
+    ports:
+      - "4567:8080"
+    links:
+      - postgres
